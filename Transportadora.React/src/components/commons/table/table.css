@@ -1,0 +1,19 @@
+body{
+    font-family: 'Roboto';
+    font-size: large;
+}
+
+.css-194a1fa-MuiSelect-select-MuiInputBase-input.css-194a1fa-MuiSelect-select-MuiInputBase-input.css-194a1fa-MuiSelect-select-MuiInputBase-input{
+    margin-top: -10px !important;
+}
+
+.css-levciy-MuiTablePagination-displayedRows {
+    margin-top: 5px !important;
+}
+.css-78c6dr-MuiToolbar-root-MuiTablePagination-toolbar .MuiTablePagination-actions{
+    margin-top: -10px !important;
+}
+
+.corLinhaTransporte{
+    background-color: rgb(164, 194, 179) !important;
+}

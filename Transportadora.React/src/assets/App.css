@@ -1,0 +1,632 @@
+body,
+html {
+    font-family: 'Roboto' !important;
+    background-color: #eee;
+    font-size: 18px !important;
+}
+
+input[type="date"]::before {
+    content: attr(placeholder);
+    position: absolute;
+    color: #999999;
+}
+
+input[type="date"] {
+    color: #ffffff;
+}
+
+input[type="date"]:focus,
+input[type="date"]:valid {
+    color: #666666;
+}
+
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+    content: "";
+}
+
+nav a {
+    font-size: 0.95rem !important;
+}
+
+nav>div>div>a {
+    color: white !important;
+}
+
+nav>div>div>div>a {
+    color: white !important;
+}
+
+.dropdown-menu a:hover {
+    color: #FFC600 !important;
+}
+
+nav {
+    -webkit-box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+    padding: 10px 0 10px 20px !important;
+    margin: 0 !important;
+}
+
+
+.App {
+    margin-top: 10px;
+    height: 60vh;
+    width: 100vw;
+}
+
+.map-container {
+    height: 100%;
+    width: 100%;
+}
+
+
+/*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+		[ Header Mobile ]*/
+.wrap-header-mobile {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    height: 65px;
+    background-color: #fff;
+    padding: 10px 25px;
+    display: none;
+    box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.05);
+    -webkit-box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.05);
+    -o-box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.05);
+    -ms-box-shadow: 0 3px 8px 0px rgba(0, 0, 0, 0.05);
+    position: relative;
+    z-index: 100;
+}
+
+/*------------------------------------------------------------------
+		[ Logo mobile ]*/
+.logo-mobile {
+    display: block;
+    position: relative;
+    height: 100%;
+    -webkit-flex-grow: 1;
+    -moz-flex-grow: 1;
+    flex-grow: 1;
+}
+
+.logo-mobile img {
+    max-width: calc(100% - 35px);
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+/*------------------------------------------------------------------
+		[ btn show menu ]*/
+.hamburger {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    -webkit-transform: scale(0.6);
+    -moz-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    -o-transform: scale(0.6);
+    transform: scale(0.6);
+}
+
+.hamburger-inner,
+.hamburger-inner:after,
+.hamburger-inner:before {
+    border-radius: 0;
+}
+
+
+/*==================================================================
+[ Menu mobile ]*/
+.menu-mobile {
+    width: 100%;
+    background-color: #fff;
+    display: none;
+}
+
+.main-menu-m {
+    padding-top: 13px 0 0 0;
+    padding-bottom: 23px;
+    background-color: rgb(61, 61, 61);
+    ;
+}
+
+.main-menu-m>li>a {
+    font-family: Roboto-Regular;
+    font-size: 16px;
+    color: #fff;
+    line-height: 2.8;
+    padding: 9px 25px 9px 25px;
+
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.main-menu-m>li>a:hover {
+    color: #fff;
+}
+
+.main-menu-m>li {
+    position: relative;
+    background-color: rgb(61, 61, 61);
+    ;
+}
+
+.arrow-main-menu-m {
+    font-size: 14px;
+    color: #fff;
+
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 18px;
+    top: 3px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.arrow-main-menu-m i {
+    transform-origin: center;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.turn-arrow-main-menu-m i {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+/*---------------------------------------------*/
+.sub-menu-m {
+    background-color: #fff;
+    padding: 10px 50px 15px 20px;
+    display: none;
+}
+
+.sub-menu-m a {
+    font-family: Roboto-Regular;
+    font-size: 15px;
+    color: rgb(61, 61, 61);
+    line-height: 2.5;
+    padding: 5px 15px 5px 15px;
+}
+
+.sub-menu-m a:hover {
+    text-decoration: none;
+}
+
+/*---------------------------------------------*/
+@media (max-width: 991px) {
+    .noPrint {
+        width: 100% !important;
+    }
+
+    .wrap-header-mobile {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    .navbarReact {
+        display: none;
+    }
+
+    .topbar,
+    .logo,
+    .no-banner,
+    .wrap-main-nav {
+        display: none;
+    }
+
+    .MuiPaper-root .MuiPaper-elevation .MuiPaper-rounded .MuiPaper-elevation1 .MuiTableContainer-root .css-11xur9t-MuiPaper-root-MuiTableContainer-root {
+        width: 70vw;
+    }
+
+    .unidade,
+    .cliente,
+    .entregadores,
+    .pickup,
+    .grupo,
+    .sobreNos,
+    #divConteudo,
+    .paginaPrincipal {
+        width: 100% !important;
+    }
+
+    .paginaPrincipal {
+        height: 100% !important;
+        padding: 5px !important;
+    }
+
+    .alinha_botao {
+        width: 270px !important;
+    }
+
+    .btnRastreio {
+        width: 110px !important;
+    }
+
+    button {
+        width: 11vw !important;
+    }
+
+    /* .btnSize {
+        width: 15% !important;
+    } */
+
+
+    /* LOGIN */
+
+    .css-3yc8wb-MuiPaper-root-MuiCard-root {
+        width: 40% !important;
+        height: 55% !important;
+    }
+
+    .logoLogin {
+        width: 35% !important;
+    }
+
+    .divLogoLogin {
+        height: 17%;
+    }
+
+    .css-11qr2p8-MuiButtonBase-root-MuiButton-root {
+        width: 11vw !important;
+    }
+
+    .btnSalvar button {
+        width: 27vw !important;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .css-x1e7x4 {
+        width: 100% !important;
+        height: 60% !important;
+    }
+
+    .noPrint {
+        width: 100% !important;
+    }
+
+    #root {
+        width: 100% !important;
+    }
+
+    .navbar .container {
+        width: 93% !important;
+    }
+
+    .btnSalvar button {
+        width: 11vw !important;
+    }
+
+    .menu-mobile {
+        display: none;
+    }
+
+    .navbarReact {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+    }
+
+    .unidade,
+    .entregadores,
+    .cliente,
+    .pickup,
+    .grupom .sobreNos,
+    .paginaPrincipal,
+    #divConteudo {
+        width: 100% !important;
+        padding: 5px !important;
+    }
+
+    /* LOGIN */
+
+    .css-3yc8wb-MuiPaper-root-MuiCard-root {
+        width: 100% !important;
+        height: 60% !important;
+    }
+
+    .logoLogin {
+        height: 80% !important;
+        width: 40% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .divLogoLogin {
+        height: 17%;
+    }
+}
+
+@media (max-width:414px) {
+
+    .css-7wsr6j-MuiButtonBase-root-MuiButton-root {
+        width: 30vw !important;
+    }
+
+    btnSalvar button {
+        width: 26vw !important;
+    }
+
+    button {
+        width: 45% !important
+    }
+
+    .row {
+        gap: 10px !important;
+    }
+
+    /* .hideCelular{
+        display: none !important;
+    } */
+
+    .unidade,
+    .entregadores,
+    .cliente,
+    .pickup,
+    .grupo,
+    .sobreNos {
+        width: 100% !important;
+        padding: 5px !important;
+    }
+
+    .entrada {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+
+    .MuiFormControl-root .MuiTextField-root .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+        width: 100% !important;
+    }
+
+    .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+        width: 100% !important;
+    }
+
+    table>thead>tr>th:nth-child(2) {
+        display: none;
+    }
+
+
+    table>tbody>tr>td:nth-child(2) {
+        display: none;
+    }
+
+    table>tbody>tr>td:nth-child(2) {
+        display: none;
+    }
+
+    .css-dsuxgy-MuiTableCell-root:nth-child(4) {
+        width: 40%;
+        display: flex !important;
+        flex-direction: column;
+        gap: 10px !important;
+    }
+
+    .css-11qr2p8-MuiButtonBase-root-MuiButton-root {
+        width: 23vw !important;
+    }
+
+    .css-3wxg0j-MuiButtonBase-root-MuiButton-root {
+        width: 23vw !important;
+    }
+
+    /* LOGIN */
+
+    .css-3yc8wb-MuiPaper-root-MuiCard-root {
+        width: 60% !important;
+        height: 50% !important;
+    }
+
+    .logoLogin {
+        width: 45% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .divLogoLogin {
+        height: 17%;
+    }
+
+
+    .divRastreioExterno {
+        padding: 0px !important;
+    }
+
+    div.MuiBox-root .css-1gnvd1f {
+        width: 80% !important;
+    }
+}
+
+@media (max-width: 360px) {
+    button {
+        width: 50% !important
+    }
+
+    .css-11qr2p8-MuiButtonBase-root-MuiButton-root {
+        width: 65% !important;
+    }
+
+    .css-3yc8wb-MuiPaper-root-MuiCard-root {
+        width: 80% !important;
+    }
+
+    /* LOGIN */
+
+    .logoLogin {
+        height: 80% !important;
+        width: 40% !important;
+        margin-bottom: 10px !important;
+    }
+
+    .divLogoLogin {
+        height: 17%;
+    }
+
+}
+
+@media (min-width: 2021px) {
+
+    #divConteudo {
+        width: 50% !important;
+    }
+
+    .paginaPrincipal {
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    /* LOGIN */
+
+    .css-3yc8wb-MuiPaper-root-MuiCard-root {
+        width: 30% !important;
+    }
+
+    .logoLogin {
+        width: 35% !important;
+        /* margin-bottom: 10px !important; */
+    }
+
+    .divLogoLogin {
+        height: 17%;
+    }
+
+    .css-ixrc9i-MuiCardContent-root:last-child {
+        margin-bottom: 100px !important;
+    }
+
+    .css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+        width: 100% !important;
+    }
+
+    .css-11qr2p8-MuiButtonBase-root-MuiButton-root {
+        width: 37% !important;
+    }
+
+    .css-11qr2p8-MuiButtonBase-root-MuiButton-root {
+        width: 6vw !important;
+    }
+
+    .btnSalvar button {
+        width: 7vw !important;
+    }
+
+}
+
+.btnSair {
+    color: #FFC600 !important;
+}
+
+.container {
+    max-width: 97vw !important;
+}
+
+@media print {
+    @page {
+        size: A4 portrait;
+    }
+
+    .noPrint {
+        display: none !important;
+    }
+
+    .yPrint {
+        display: block !important;
+    }
+}
+
+.css-1d1jkr1 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    background-color: #ebdfb3 !important;
+    border: 1px solid rgb(0, 0, 0);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 11px 15px -7px, rgba(0, 0, 0, 0.14) 0px 24px 38px 3px, rgba(0, 0, 0, 0.12) 0px 9px 46px 8px;
+    padding: 32px;
+    z-index: -1;
+}
+
+.css-13xy2my {
+    overflow-y: scroll !important;
+    height: 45vh !important;
+}
+
+.css-1o6fzn1:nth-child(5) {
+    height: 7.2vh !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.css-1o6fzn1 {
+    height: 7.2vh !important;
+    align-items: center !important;
+}
+
+.css-dsuxgy-MuiTableCell-root:nth-child(5) {
+    height: 7.2vh !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+
+#btnRastreio {
+    font-size: 0 !important;
+}
+
+#btnVerMapa {
+    font-size: 0 !important;
+}
+
+.example-container .example-rounded {
+    border-radius: 50%;
+}
+
+.css-919eu4 {
+    background-color: white !important;
+}
+
+.css-1nqcc1s{
+    background-color: #FFC600 !important;
+    color: #484848 !important;
+}
+
+.css-vubbuv, .css-1nqcc1s{
+    color: #484848 !important;
+}

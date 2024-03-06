@@ -1,0 +1,33 @@
+.btnSobreMissao, .btnSobreVisao, .btnSobreValores{
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.expansivel{
+    text-align: center !important;
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
+    opacity: 1;
+    animation: animateText 0.5s ease-in-out !important;
+}
+
+
+@keyframes animateText {
+    0% {
+        transform: scale(0.0);
+    }
+
+    50% {
+        transform: scale(1.0);
+    }
+
+    100% {
+        transform: scale(0.5);
+    }
+}

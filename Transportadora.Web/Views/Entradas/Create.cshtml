@@ -1,0 +1,436 @@
+﻿@model Transportadora.Web.ViewModel.EntradaVM
+
+@{
+
+    ViewData["Title"] = "Create";
+
+}
+
+
+
+<h2>Entrada</h2>
+
+
+
+<input type="hidden" id="latitudeCliente" />
+
+<input type="hidden" id="longitudeCliente" />
+
+<input type="hidden" id="latitudeFilial" />
+
+<input type="hidden" id="longitudeFilial" />
+
+
+
+<hr />
+
+<div style="display: flex; justify-content: flex-end">
+
+    <h3>Valor do Frete: &nbsp;<label id="valor" style="color: red"></label></h3>
+
+</div>
+
+<div style="display: flex; flex-direction: column;">
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body" style="justify-content: space-around">
+                    <form asp-action="Create">
+                        <input type="hidden" id="distancia" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="form-group row">
+
+                            <div class="col-md">
+
+                                <label asp-for="CodCliente" class="control-label"></label>
+
+                                <select asp-for="CodCliente" class="form-control" asp-items="ViewBag.ErcodCliente">
+
+                                    <option value="0">Selecione um cliente</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="form-group row">
+
+                            <div class="col-md">
+
+                                <label asp-for="CodUnidade" class="control-label"></label>
+
+                                <select asp-for="CodUnidade" class="form-control" asp-items="ViewBag.ErcodUnidade">
+
+                                    <option value="0">Selecione uma unidade</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-4">
+                                <label asp-for="CodPickup" class="control-label"></label>
+                                <select asp-for="CodPickup" class="form-select">
+                                </select>
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <label asp-for="NumeroNotaFiscal" class="control-label"></label>
+
+                                <input asp-for="NumeroNotaFiscal" class="form-control" />
+
+                                <span asp-validation-for="NumeroNotaFiscal" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="col-md-4">
+
+                                <label asp-for="Valor" class="control-label"></label>
+
+                                <input asp-for="Valor" class="form-control" />
+
+                                <span asp-validation-for="Valor" class="text-danger"></span>
+
+                            </div>
+
+                        </div>
+
+                        <br />
+
+                        <h3>Item</h3>
+
+
+
+                        <div class="form-group">
+
+                            <label class="form-label">Item</label>
+
+                            <input type="text" id="item" class="form-control" />
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label>Peso</label>
+
+                            <input type="text" id="peso" class="form-control" />
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <label>Valor</label>
+
+                            <input pattern="[0-9]+([,][0-9]+)?" , step="0.1" type="number" id="valorItem" class="form-control" />
+
+                        </div>
+
+                        <br />
+
+                        <div style="display: flex; justify-content: center">
+
+                            <button type="button" class="btn-sm btn-primary" onclick="Adicionar()">Adicionar</button>
+
+                        </div>
+
+                        <br />
+
+
+
+                        <div style="display: flex; justify-content: center;" id="divTable">
+
+                            <table id="table">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>Item</th>
+
+                                        <th>Peso</th>
+
+                                        <th>Valor</th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+                                    @{
+                                        if (Model != null)
+                                        {
+                                            foreach (var item in Model.Itens)
+                                            {
+                                                <tr>
+                                                    <td>@item.Eidescricao</td>
+                                                    <td>@item.Eipeso</td>
+                                                    <td>@item.Eivalor</td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <br />
+                        <div style="display: flex; justify-content: center">
+                            <input type="submit" value="Salvar" class="btn-sm btn-primary" />
+                            <button class="btn-sm btn-danger" type="button" id="encerrarEntrada" onclick="Encerrar()">Encerrar entrada</button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4 ml-8">
+
+            <div class="card" style="height: 100% !important">
+
+                <div class="card-body" style="justify-content: space-around">
+
+                    <div class="form-group row">
+
+                        <div class="col-md">
+
+                            <label class="control-label">Logradouro</label>
+
+                            <input type="text" readonly id="logradouro" class="form-control" />
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group row espacamento">
+
+                        <div class="col-md-4">
+
+                            <label class="control-label">N°</label>
+
+                            <input type="text" readonly id="numero" class="form-control" />
+
+                        </div>
+
+                        <div class="col-md">
+
+                            <label class="control-label">Complemento</label>
+
+                            <input type="text" readonly id="complemento" class="form-control" />
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group row espacamento">
+
+                        <div class="col-md">
+
+                            <label class="control-label">Bairro</label>
+
+                            <input type="text" readonly id="bairro" class="form-control" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row espacamento">
+
+                        <div class="col-md">
+
+                            <label class="control-label">Cidade</label>
+
+                            <input type="text" readonly id="cidade" class="form-control" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row espacamento">
+
+                        <div class="col-md">
+
+                            <label class="control-label">CEP</label>
+
+                            <input type="text" readonly id="cep" class="form-control" />
+
+                        </div>
+
+                        <div class="col-md">
+
+                            <label class="control-label">Estado</label>
+
+                            <input type="text" readonly id="estado" class="form-control" />
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXuoBcyNzqbObSA5e403g1zx66UAXP39E&libraries=routes"></script>
+
+    <script>
+        const urlEndereco = "@Url.Action("SelecionaEndereco", "Cliente")";
+        const urlEnderecoUnidade = "@Url.Action("SelecionaEndereco", "Unidades")";
+        const urlListaPickUp = "@Url.Action("ListarPickUpPorCliente", "Entradas")";
+        let distancia = 0;
+        const urlEncerrarEntrada = "@Url.Action("EncerrarEntrada", "Entradas")";
+    </script>
+    <script>
+
+        function Encerrar() {
+            var codEntrada = 18;
+            location.href = urlEncerrarEntrada + "?codEntrada=" + codEntrada;
+        }
+
+        function DesabilitarCampos(valor = true) {
+            var linhas = $("#table tbody tr").length;
+            if (linhas > 0) {
+                $("#CodCliente").attr('disabled', valor);
+                $("#CodUnidade").attr('disabled', valor);
+                $("#CodPickup").attr('disabled', valor);
+                $("#NumeroNotaFiscal").attr('readonly', valor);
+                $("#Valor").attr('readonly', valor);
+            }
+        }
+
+
+        function Adicionar() {
+            $("#divTable").hide().show(50);
+            var item = $("#item").val();
+            var peso = $("#peso").val();
+            var valorItem = $("#valorItem").val();
+            var contadorLinha = $("#table tbody tr").length;
+            var linha = `<tr><td><input type="hidden" value="${item}" name="Itens[${contadorLinha}].Eidescricao"/>${item}</td>` +
+                `<td><input type="hidden" value = "${peso}" name = "Itens[${contadorLinha}].Eipeso" id="valor-calculado" /> ${peso} </td>` +
+                `<td><input type="hidden" value = "${valorItem}" name = "Itens[${contadorLinha}].Eivalor" id="valor-calculado" /> ${valorItem} </td></tr>`;
+
+            if (peso == "" || item == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error...',
+                    text: 'O campo item e/ou peso não podem ser vazios, por favor, verifique-os novamente.',
+                })
+            }
+            else {
+                $("#table tbody").append(linha);
+                var peso = 0;
+                var distancia = $("#distancia").val();
+                var valor = $("#Valor").val() == "" ? 0 : $("#Valor").val();
+                $("#table tbody tr:visible td:nth-child(2)").each(function () {
+                    peso += parseInt($(this).text());
+                    $('#total').text(peso);
+                    var valorTotal = (peso / 1000) * (distancia / 1000);
+                    $("#Valor").val(parseFloat(valor) + parseFloat(valorItem));
+                    var valorTotalConvertido = valorTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+                    $('#valor').text(valorTotalConvertido);
+                    //DesabilitarCampos();
+                })
+            }
+        }
+
+        function BuscarDistancia() {
+            var latitudeCliente = $("#latitudeCliente").val();
+            var longitudeCliente = $("#longitudeCliente").val();
+            var latitudeFilial = $("#latitudeFilial").val();
+            var longitudeFilial = $("#longitudeFilial").val();
+            var urlApi = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=-22.460449,-44.480745&destinations=-22.97182,-44.578907&key=AIzaSyBXuoBcyNzqbObSA5e403g1zx66UAXP39E`;
+            var origem = new google.maps.LatLng(latitudeCliente, longitudeCliente);// aqui ele cria a latitude e longitude do cliente
+            var destino = new google.maps.LatLng(latitudeFilial, longitudeFilial);// aqui ele cria a latitude e longitude da unidade
+            console.log(origem);
+            console.log(destino);
+            //aqui ele usa a priopria biblioteca do google pra fazer isso, que a gente definiu la no script src===
+            var service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix(
+
+                {
+                    origins: [origem],
+                    destinations: [destino],
+                    travelMode: 'DRIVING',
+                }, callback);
+
+            function callback(response, status) {
+                var rows = response.rows
+                // aqui ele te da a distancia entre os 2 pontos.
+                var distancia = rows[0].elements[0].distance.value;
+                $("#distancia").val(distancia);
+                console.log('dis', $("#distancia").val());
+            }
+        }
+
+        $('#CodUnidade').on('change', function () {
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: urlEnderecoUnidade + "?codUnidade=" + $(this).val(),
+                success: function (data) {
+                    $("#longitudeFilial").val(data.data.enLongitude);
+                    $("#latitudeFilial").val(data.data.enlatitude);
+                    BuscarDistancia();
+                }
+            })
+        })
+
+
+
+        $('#CodCliente').on('change', function () {
+            $.ajax({
+                dataType: 'json',
+                url: urlEndereco + "?codCliente=" + $(this).val(),
+                success: function (data) {
+                    $("#logradouro").val(data.data.enlogradouro);
+                    $("#numero").val(data.data.ennumero);
+                    $("#complemento").val(data.data.encomplemento);
+                    $("#bairro").val(data.data.enbairro);
+                    $("#cidade").val(data.data.encidade);
+                    $("#cep").val(data.data.encep);
+                    $("#estado").val(data.data.enestado);
+                    $("#latitudeCliente").val(data.data.enlatitude)
+                    $("#longitudeCliente").val(data.data.enLongitude)
+
+                }
+
+            });
+            $.getJSON(urlListaPickUp + "?codCliente=" + $(this).val(), function (data) {
+                data.map(item => {
+                    var option = `<option value="${item.pccodigo}">${item.pccodigo}</option>`
+                    $("#CodPickup").append(option);
+                })
+                console.log(data);
+            })
+
+        })
+
+
+
+    </script>
+
+}

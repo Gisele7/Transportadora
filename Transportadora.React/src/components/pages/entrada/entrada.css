@@ -1,0 +1,38 @@
+@media print {
+   @page {
+      size: A4 portrait;
+   }
+
+   .noPrint {
+      display: none !important;
+   }
+
+   .yPrint {
+      display: block !important;
+      padding: 10px !important;
+      text-align: center;
+      height: 70% !important;
+   }
+}
+
+
+.destinatarioRemetente {
+   font-family: Roboto !important;
+   font-weight: 700 !important;
+   background-color: black !important;
+   width: 150px;
+   text-align: center;
+   color: white !important;
+}
+
+label {
+   color: black !important;
+}
+
+.linha-vertical {
+   border-left: 2px solid;
+   /* Adiciona borda esquerda na div como ser fosse uma linha.*/
+   color: black !important
+}
+
+

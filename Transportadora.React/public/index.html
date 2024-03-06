@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en" style="height: 100% !important; width: 100% !important;">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="content/assets/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="content/hamburgers.min.css" />
+  <link rel="stylesheet" href="css/util.min.css" />
+  <link rel="stylesheet" href="fonts/fontawesome-5.0.8/css/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="sweetAlert2/sweetalert2.min.css" />
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>Transportadora</title>
+</head>
+
+<!-- estava: height: calc(100% - 87px) -->
+<body style="height: 100%;">
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+  <script src="sweetAlert2/sweetalert2.min.js"></script>
+  <script>
+    /*==================================================================
+      [ Menu mobile ]*/
+    $(document).ready(function () {
+      try {
+        $('.btn-show-menu-mobile').on('click', function () {
+          console.log('clicou');
+          $(this).toggleClass('is-active');
+          $('.menu-mobile').slideToggle();
+        });
+
+        var arrowMainMenu = $('.arrow-main-menu-m');
+
+        for (var i = 0; i < arrowMainMenu.length; i++) {
+          $(arrowMainMenu[i]).on('click', function () {
+            $(this).parent().find('.sub-menu-m').slideToggle();
+            $(this).toggleClass('turn-arrow-main-menu-m');
+          })
+        }
+
+        $(window).on('resize', function () {
+          if ($(window).width() >= 992) {
+            if ($('.menu-mobile').css('display') === 'block') {
+              $('.menu-mobile').css('display', 'none');
+              $('.btn-show-menu-mobile').toggleClass('is-active');
+            }
+
+            $('.sub-menu-m').each(function () {
+              if ($(this).css('display') === 'block') {
+                $(this).css('display', 'none');
+                $(arrowMainMenu).removeClass('turn-arrow-main-menu-m');
+              }
+            });
+
+          }
+        });
+      } catch (er) {
+        console.log(er);
+      }
+
+
+      /*==================================================================
+      [ Respon tab01 ]*/
+      try {
+        $('.tab01').each(function () {
+          var tab01 = $(this);
+          var navTabs = $(this).find('.nav-tabs');
+          var dropdownMenu = $(tab01).find('.nav-tabs>.nav-item-more .dropdown-menu');
+          var navItem = $(tab01).find('.nav-tabs>.nav-item');
+
+          var navItemSize = [];
+          var size = 0;
+          var wNavItemMore = 0;
+
+          $(window).on('load', function () {
+            navItem.each(function () {
+              size += $(this).width();
+              navItemSize.push(size);
+            });
+
+            responTab01();
+          });
+
+          $(window).on('resize', function () {
+            responTab01();
+          })
+
+          var responTab01 = function () {
+            if (navTabs.width() <= navItemSize[navItemSize.length - 1] + 1) {
+              $(tab01).find('.nav-tabs>.nav-item-more').removeClass('dis-none');
+            } else {
+              $(tab01).find('.nav-tabs>.nav-item-more').addClass('dis-none');
+            }
+
+            wNavItemMore = $(tab01).find('.nav-tabs>.nav-item-more').hasClass('dis-none') ? 0 : $(tab01)
+              .find('.nav-tabs>.nav-item-more').width();
+
+            for (var i = 0; i < navItemSize.length; i++) {
+
+              if (navTabs.width() - wNavItemMore <= navItemSize[i] + 1) {
+                $(tab01).find('.nav-tabs .nav-item').remove();
+
+                for (var j = i - 1; j >= 0; j--) {
+                  $(navTabs).prepend($(navItem[j]).clone());
+                }
+
+                for (var j = i; j < navItemSize.length; j++) {
+                  $(dropdownMenu).append($(navItem[j]).clone());
+                }
+
+                break;
+              } else {
+                $(tab01).find('.nav-tabs .nav-item').remove();
+
+                for (var j = i; j >= 0; j--) {
+                  $(navTabs).prepend($(navItem[j]).clone());
+                }
+              }
+            }
+          };
+        });
+      } catch (er) {
+        console.log(er);
+      }
+    })
+  </script>
+  <!-- <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXuoBcyNzqbObSA5e403g1zx66UAXP39E&callback=initMap&v=weekly"
+    defer></script> -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src="./content/md5.min.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKWzKda5nOctOrohuG3Rf_DOwNGd8BWNU&libraries=routes"></script>
+  <div id="root" style="height: 100% !important;"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+</body>
+
+</html>

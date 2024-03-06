@@ -1,0 +1,56 @@
+html {
+  font-size: 14px;
+}
+
+select{
+    cursor: pointer;
+
+}
+
+#map {
+    height: 400px; /* The height is 400 pixels */
+    width: 100%; /* The width is the width of the web page */
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.card {
+    border-radius: 7px !important;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
+    /*    width: 100px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;*/
+}
+
+table th, table td {
+    width: 100px;
+    padding: 5px;
+    border: 1px dashed #ccc;
+    text-align: center !important;
+}
+
+table th {
+    background-color: #e4e4e4 !important;
+}
+
+input, button{
+    border-radius: 10px !important;
+}
+
+.espacamento{
+    margin-top: 8px !important;
+}

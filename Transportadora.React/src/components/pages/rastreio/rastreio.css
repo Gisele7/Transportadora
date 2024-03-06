@@ -1,0 +1,22 @@
+.css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop{
+background-color: white !important;
+}
+
+
+#modal{
+    width: 100% !important;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 50 !important;
+    top: 5% !important;
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: transparent; /* Black w/ opacity */
+}
+
+.css-v6mo1y-MuiTimelineDot-root{
+    background-color: #FFC600 !important;
+}
+
+.css-i4bv87-MuiSvgIcon-root{
+    color: #484848 !important;
+}

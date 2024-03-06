@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Transportadora.Model.Models.Entrada>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ErnumeroNotaFiscal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ervalor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ErcodClienteNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ErcodPickupNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ErnumeroNotaFiscal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ervalor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ErcodClienteNavigation.Clcodigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ErcodPickupNavigation.Pccodigo)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Ercodigo">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Ercodigo">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Ercodigo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

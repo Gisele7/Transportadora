@@ -1,0 +1,46 @@
+﻿@model Transportadora.Model.Models.Entregadores
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<hr />
+<div class="row">
+    <div style="display: flex; justify-content: center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header alert-info">Entregadores</div>
+                <div class="card-body" style="justify-content: space-around">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Etnome" class="control-label"></label>
+                            <input asp-for="Etnome" class="form-control" />
+                            <span asp-validation-for="Etnome" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Ettelefone" class="control-label"></label>
+                            <input asp-for="Ettelefone" class="form-control" />
+                            <span asp-validation-for="Ettelefone" class="text-danger"></span>
+                        </div>
+                        <br />
+                        <div style="display: flex; justify-content: center">
+                            <input type="submit" value="Salvar" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $("#Ettelefone").inputmask("mask", { "mask": "(99) 99999-9999" }, { reverse: false });
+    </script>
+}

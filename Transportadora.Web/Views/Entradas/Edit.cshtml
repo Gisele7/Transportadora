@@ -1,0 +1,49 @@
+﻿@model Transportadora.Model.Models.Entrada
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Entrada</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Ercodigo" />
+            <div class="form-group">
+                <label asp-for="ErcodCliente" class="control-label"></label>
+                <select asp-for="ErcodCliente" class="form-control" asp-items="ViewBag.ErcodCliente"></select>
+                <span asp-validation-for="ErcodCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ErcodPickup" class="control-label"></label>
+                <select asp-for="ErcodPickup" class="form-control" asp-items="ViewBag.ErcodPickup"></select>
+                <span asp-validation-for="ErcodPickup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ErnumeroNotaFiscal" class="control-label"></label>
+                <input asp-for="ErnumeroNotaFiscal" class="form-control" />
+                <span asp-validation-for="ErnumeroNotaFiscal" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ervalor" class="control-label"></label>
+                <input asp-for="Ervalor" class="form-control" />
+                <span asp-validation-for="Ervalor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

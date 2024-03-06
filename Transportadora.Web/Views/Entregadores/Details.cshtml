@@ -1,0 +1,30 @@
+﻿@model Transportadora.Model.Models.Entregadores
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Entregadores</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Etnome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Etnome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ettelefone)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ettelefone)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Etcodigo">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

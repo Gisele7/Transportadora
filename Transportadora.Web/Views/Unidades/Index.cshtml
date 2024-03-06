@@ -1,0 +1,111 @@
+﻿@model UnidadeVM
+
+@{
+    ViewData["Title"] = "Unidades";
+}
+
+<hr />
+<div class="row">
+    <div class="col-md">
+        <div class="card">
+            <div class="card-header alert-info">Unidade</div>
+            <div class="card-body" style="justify-content: space-around">
+                <form asp-action="Index">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group row">
+                        <div class="col-md">
+                            <label asp-for="Undescricao" class="control-label"></label>
+                            <input asp-for="Undescricao" class="form-control" />
+                            <span asp-validation-for="Undescricao" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <label asp-for="CEP" class="control-label"></label>
+                            <input asp-for="CEP" class="form-control" />
+                            <span asp-validation-for="CEP" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-3">
+                            <label asp-for="Cidade" class="control-label"></label>
+                            <input asp-for="Cidade" class="form-control" />
+                            <span asp-validation-for="Cidade" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-1">
+                            <label asp-for="UF" class="control-label"></label>
+                            <input asp-for="UF" class="form-control" />
+                            <span asp-validation-for="UF" class="text-danger"></span>
+                        </div>
+
+
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label asp-for="Logradouro" class="control-label"></label>
+                            <input asp-for="Logradouro" class="form-control" />
+                            <span asp-validation-for="Logradouro" class="text-danger"></span>
+                        </div>
+                        <div class="col-md">
+                            <label asp-for="Bairro" class="control-label"></label>
+                            <input asp-for="Bairro" class="form-control" />
+                            <span asp-validation-for="Bairro" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-1">
+                            <label asp-for="Numero" class="control-label"></label>
+                            <input asp-for="Numero" class="form-control" />
+                            <span asp-validation-for="Numero" class="text-danger"></span>
+                        </div>
+                        <div class="col-md">
+                            <label asp-for="Complemento" class="control-label"></label>
+                            <input asp-for="Complemento" class="form-control" />
+                            <span asp-validation-for="Complemento" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+                    <h4>Endereço</h4>
+                    <div class="form-group row">
+                        <div class="col-md-1">
+                            <label asp-for="Unestado" class="control-label"></label>
+                            <input asp-for="Unestado" class="form-control" />
+                            <span asp-validation-for="Unestado" class="text-danger"></span>
+                        </div>
+                        <div class="col-md">
+                            <label asp-for="Uncidade" class="control-label"></label>
+                            <input asp-for="Uncidade" class="form-control" />
+                            <span asp-validation-for="Uncidade" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <br />
+                    <div style="display: flex; justify-content: center">
+                        <input type="submit" value="Salvar" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+
+        function BuscarCEP(cep) {
+            $.ajax({
+                type: "GET",
+                url: `https://viacep.com.br/ws/${cep}/json/`,
+                dataType: "json",
+                success: function(data) {
+                    $("#UF").val(data.uf);
+                    $("#Logradouro").val(data.logradouro);
+                    $("#Complemento").val(data.complemento);
+                    $("#Bairro").val(data.bairro);
+                    $("#Cidade").val(data.localidade);
+                }
+            })
+        }
+
+        $("#CEP").on('blur', function() {
+            BuscarCEP($(this).val());
+        })
+
+
+    </script>
+}

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Transportadora.Web.ViewModel.EntradaVM>
+
+@{
+    ViewData["Title"] = "ListarEntradas";
+}
+
+<h1>ListarEntradas</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroNotaFiscal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CodPickup)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Unidade)
+            </th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumeroNotaFiscal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CodPickup)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Unidade)
+                </td>
+                <td>
+                    <button class="btn-sm btn-primary" onclick='location.href="@Url.Action("Create", "Entradas",new { codEntrada = item.CodigoEntrada})"'>Abrir</button>
+                    <button class="btn-sm btn-danger" onclick="Excluir(@item.CodigoEntrada)">Excluir</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts{
+    <script>
+        const msg = "@ViewData["Msg"]";
+        const msgErro = "@ViewData["MsgErro"]";
+        const urlExcluir = "@Url.Action("Excluir", "Entradas")";
+    </script>
+
+    <script>
+        function Excluir(codEntrada){
+            Swal.fire({
+                title: 'Tem certeza que deseja excluir esta entrada?',
+                text: "Uma vez concluído, não poderá ser alterado!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, desejo excluir!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = urlExcluir + "?codEntrada=" + codEntrada;
+                }
+            })
+        }
+
+        if (msg != "") {
+            Swal.fire(
+                'Entradas',
+                msg,
+                'success'
+            );
+
+        }
+
+    </script>
+}

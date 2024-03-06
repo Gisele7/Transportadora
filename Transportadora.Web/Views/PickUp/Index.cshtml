@@ -1,0 +1,220 @@
+﻿@model Transportadora.Model.Models.Pickup
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<input type="hidden" id="latitudeCliente" />
+<input type="hidden" id="longitudeCliente" />
+<input type="hidden" id="latitudeFilial" />
+<input type="hidden" id="longitudeFilial" />
+<hr />
+<div style="display: flex; flex-direction: column;">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header alert-info">Pick-Up</div>
+                <div class="card-body" style="justify-content: space-around">
+                    <form asp-action="Index">
+                        <input asp-for="Pcdistancia" type="hidden" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="PccodCliente" class="control-label"></label>
+                            <select asp-for="PccodCliente" class="form-select" asp-items="ViewBag.PccodCliente">
+                                <option value="0">Selecione um cliente</option>
+                            </select>
+                            <span asp-validation-for="PccodCliente" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Pcdata" class="control-label"></label>
+                            <input asp-for="Pcdata" type="date" class="form-control" />
+                            <span asp-validation-for="Pcdata" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PccodEntregador" class="control-label"></label>
+                            <select asp-for="PccodEntregador" class="form-select" asp-items="ViewBag.PccodEntregador">
+                                <option value="0">Selecione um entregador</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PccodUnidade" class="control-label"></label>
+                            <select asp-for="PccodUnidade" class="form-select" asp-items="ViewBag.PccodUnidade">
+                                <option value="0">Selecione uma unidade</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Pcobservacao" class="control-label"></label>
+                            <input asp-for="Pcobservacao" class="form-control" />
+                            <span asp-validation-for="Pcobservacao" class="text-danger"></span>
+                        </div>
+
+                        <br />
+                        <br />
+                        <br />
+                        <div style="display: flex; justify-content: center">
+                            <input type="submit" value="Salvar" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 ml-8">
+            <div class="card" style="height: 100% !important">
+                <div class="card-header alert-info">Endereço</div>
+                <div class="card-body" style="justify-content: space-around">
+                    <div class="form-group row">
+                        <div class="col-md">
+                            <label class="control-label">Logradouro</label>
+                            <input type="text" readonly id="logradouro" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row espacamento">
+                        <div class="col-md-4">
+                            <label class="control-label">N°</label>
+                            <input type="text" readonly id="numero" class="form-control" />
+                        </div>
+                        <div class="col-md">
+                            <label class="control-label">Complemento</label>
+                            <input type="text" readonly id="complemento" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row espacamento">
+                        <div class="col-md">
+                            <label class="control-label">Bairro</label>
+                            <input type="text" readonly id="bairro" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row espacamento">
+                        <div class="col-md">
+                            <label class="control-label">Cidade</label>
+                            <input type="text" readonly id="cidade" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group row espacamento">
+                        <div class="col-md">
+                            <label class="control-label">CEP</label>
+                            <input type="text" readonly id="cep" class="form-control" />
+                        </div>
+                        <div class="col-md">
+                            <label class="control-label">Estado</label>
+                            <input type="text" readonly id="estado" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br />
+
+<div id="map" style="border: solid 1px"></div>
+
+
+
+
+@section Scripts {
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXuoBcyNzqbObSA5e403g1zx66UAXP39E&callback=initMap&v=weekly" defer></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXuoBcyNzqbObSA5e403g1zx66UAXP39E&libraries=routes"></script>
+    <script>
+        const urlEndereco = "@Url.Action("SelecionaEndereco", "PickUp")";
+        const urlEnderecoUnidade = "@Url.Action("SelecionaEndereco", "Unidades")";
+    </script>
+    <script>
+
+
+        function BuscarDistancia() {
+            var latitudeCliente = $("#latitudeCliente").val();
+            var longitudeCliente = $("#longitudeCliente").val();
+            var latitudeFilial = $("#latitudeFilial").val();
+            var longitudeFilial = $("#longitudeFilial").val();
+            var urlApi = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=-22.460449,-44.480745&destinations=-22.97182,-44.578907&key=AIzaSyBXuoBcyNzqbObSA5e403g1zx66UAXP39E`;
+            var origem = new google.maps.LatLng(latitudeCliente, longitudeCliente);// aqui ele cria a latitude e longitude do cliente
+            var destino = new google.maps.LatLng(latitudeFilial, longitudeFilial);// aqui ele cria a latitude e longitude da unidade
+            console.log(origem);
+            console.log(destino);
+            //aqui ele usa a priopria biblioteca do google pra fazer isso, que a gente definiu la no script src===
+            var service = new google.maps.DistanceMatrixService();
+            service.getDistanceMatrix(
+
+                {
+                    origins: [origem],
+                    destinations: [destino],
+                    travelMode: 'DRIVING',
+                }, callback);
+
+            function callback(response, status) {
+                var rows = response.rows
+                // aqui ele te da a distancia entre os 2 pontos.
+                var distancia = rows[0].elements[0].distance.value;
+                $("#Pcdistancia").val(distancia);
+                console.log('dis', $("#Pcdistancia").val());
+            }
+        }
+
+        $('#PccodUnidade').on('change', function () {
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: urlEnderecoUnidade + "?codUnidade=" + $(this).val(),
+                success: function (data) {
+                    $("#longitudeFilial").val(data.data.enLongitude);
+                    $("#latitudeFilial").val(data.data.enlatitude);
+                    BuscarDistancia();
+                }
+            })
+        })
+
+        $('#PccodCliente').on('change', function () {
+            $.ajax({
+                type: "GET",
+                dataType: 'json',
+                url: urlEndereco + "?codCliente=" + $(this).val(),
+                success: function (data) {
+                    $("#logradouro").val(data.data.enlogradouro);
+                    $("#numero").val(data.data.ennumero);
+                    $("#complemento").val(data.data.encomplemento);
+                    $("#bairro").val(data.data.enbairro);
+                    $("#cidade").val(data.data.encidade);
+                    $("#cep").val(data.data.encep);
+                    $("#estado").val(data.data.enestado);
+                    console.log(data)
+
+                    $("#latitudeCliente").val(data.data.enlatitude)
+                    $("#longitudeCliente").val(data.data.enLongitude)
+                    initMap();
+
+                }
+            });
+        })
+
+        function initMap() {
+            const latitudeCliente = $("#latitudeCliente").val();
+            const longitudeCliente = $("#longitudeCliente").val();
+            console.log('lat', latitudeCliente);
+            console.log('lgt', longitudeCliente);
+            // The location of Uluru
+            const uluru = { lat: parseFloat(latitudeCliente), lng: parseFloat(longitudeCliente) };
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 16,
+                center: uluru,
+
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+        }
+
+
+        $(document).ready(function () {
+            $("#CEP").inputmask("mask", { "mask": "99999-999" }, { reverse: false });
+        })
+
+    </script>
+    }

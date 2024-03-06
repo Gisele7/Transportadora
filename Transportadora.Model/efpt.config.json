@@ -1,0 +1,157 @@
+﻿{
+   "CodeGenerationMode": 2,
+   "ContextClassName": "TRANSPORTADORAContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "Transportadora.Model",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[CLIENTE]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DEVOLUCAO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[DISTANCIA_UNIDADE]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ENDERECO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ENTRADA]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ENTRADA_ITENS]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ENTREGADORES]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[GRUPO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[GRUPO_USUARIO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MOVIMENTACAO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[OCORRENCIA]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PICKUP]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[REGIAO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[RESULTADO_OCORRENCIA]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ROTA]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[STATUS]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TIPO_CLIENTE]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TIPO_LOGRADOURO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TIPO_OCORRENCIA]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TRANSPORTE]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[UNIDADES]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[USUARIO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VEICULO]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VW_DEVOLUCAO_ANUAL]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[VW_DEVOLUCAO_MES]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[VW_ENTRADAS_ANUAL]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[VW_ENTRADAS_MES]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[VW_UTILIZACAO_ANUAL]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[VW_UTILIZACAO_MES]",
+         "ObjectType": 3
+      }
+   ],
+   "UiHint": "desktop-5so6c6k\\sqlexpress.TRANSPORTADORA.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
